@@ -474,4 +474,7 @@ def mobilenet_v1_arg_scope(
                       activation_fn=tf.nn.relu6, normalizer_fn=slim.batch_norm):
     with slim.arg_scope([slim.batch_norm], **batch_norm_params):
       with slim.arg_scope([slim.conv2d], weights_regularizer=regularizer):
-        with slim.arg_scope([slim.separable_conv2d],
+        with slim.arg_scope([slim.separable_conv2d], weights_regularizer=regularizer):
+          with slim.arg_scope([slim.separable_conv2d],
+                            weights_regularizer=depthwise_regularizer) as sc:
+            return sc
