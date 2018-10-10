@@ -116,6 +116,7 @@ def create_configs_from_pipeline_proto(pipeline_config):
   # Keeps eval_input_config only for backwards compatibility. All clients should
   # read eval_input_configs instead.
   if configs["eval_input_configs"]:
+    #configs["eval_input_configs"] = [configs["eval_input_configs"]]
     configs["eval_input_config"] = configs["eval_input_configs"][0]
   if pipeline_config.HasField("graph_rewriter"):
     configs["graph_rewriter_config"] = pipeline_config.graph_rewriter
